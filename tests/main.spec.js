@@ -2,7 +2,7 @@
  * File: main.spec.js
  * Project: xchange-converter
  * Created: Friday, September 10th 2021, 6:04:05 am
- * Last Modified: Friday, September 10th 2021, 7:25:38 am
+ * Last Modified: Friday, September 10th 2021, 7:29:19 am
  * Copyright © 2021 AMDE Agência
  */
 
@@ -22,6 +22,15 @@ describe('Main CLI', () => {
     exec(`${xConverter} --version`, (err, stdout, stderr) => {
       if (err) throw err;
       expect(stdout.replace('\n', '')).to.be.equal(version);
+      done();
+    });
+  });
+
+  it('should return the description when xConverter --help', (done) => {
+    exec(`${xConverter} --help`, (err, stdout, stderr) => {
+      if (err) throw err;
+      expect(stdout.includes('A CLI to convert EUR to any currency provided.'))
+        .to.be.true;
       done();
     });
   });
